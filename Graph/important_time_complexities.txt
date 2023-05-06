@@ -1,0 +1,4 @@
+dfs algo undirected = o(v+2e) //v are vertices and e are edges
+dfs algo directed = o(v+e) //v are vertices and e are edges
+bfs algo undirected = o(v+e) //v are vertices and e are edges
+bfs algo directed = o(v+e) //v are vertices and e are edges

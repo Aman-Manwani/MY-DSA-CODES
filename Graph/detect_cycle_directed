@@ -1,0 +1,46 @@
+BY DFS 
+
+// we make another array named PathVis to keey track of the path followed 
+// if path followed is according to the directions and form a cycle , it return true
+// path it covers in the graph make the PathVis array to 1
+// and in reverse recursion call it changes the path again to 0 to get the exact path followed
+
+bool dfs(int start,vector<int> adj[],vector<int>&vis,vector<int>&PathVis)
+    {
+        vis[start] = 1;
+        PathVis[start] = 1;
+        for(auto it : adj[start])
+        {
+            if(!vis[it])
+            {
+                if(dfs(it,adj,vis,PathVis)==true)
+                {
+                    return true;
+                }
+            }else
+            if(PathVis[it] == 1)
+            {
+                return true;
+            }
+        }
+        PathVis[start] = 0;
+        return false;
+    }
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int V, vector<int> adj[]) 
+    {
+        vector<int>vis(V,0);
+        vector<int>PathVis(V,0);
+        // this is just for components checking
+        for(int i=0;i<V;i++)
+        {
+            if(!vis[i])
+            {
+                if(dfs(i,adj,vis,PathVis))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
